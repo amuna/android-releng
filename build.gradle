@@ -8,7 +8,17 @@ buildscript {
         classpath deps.buildPlugin.spotless
         classpath deps.buildPlugin.safeArgs
         classpath deps.buildPlugin.kotlin
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.1"
     }
+    repositories {
+        google()
+        jcenter()
+    }
+
+}
+//Added sonarqube plugin
+plugins {
+    id "org.sonarqube" version "2.7"
 }
 
 subprojects {

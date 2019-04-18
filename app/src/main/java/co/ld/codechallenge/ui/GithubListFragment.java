@@ -5,6 +5,7 @@
 package co.ld.codechallenge.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
+import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.LayoutRes;
@@ -40,10 +42,13 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
 
     /* Initial query */
     private static final String RAW_QUERY = "javascript";
+    //private static final String RAW_QUERY = "java";
     /* Adapter holding data. */
-    private RepoListAdapter mAdapter;
+    public RepoListAdapter mAdapter;
     private ProgressBar progressIndicator;
     private SwipeRefreshLayout mySwipeRefreshLayout;
+    RecyclerView repoRecycler;
+    public static List<Repo> data;
 
     @LayoutRes
     @Override
@@ -60,12 +65,15 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d("YESS", "3");
 
         // Initialize Listeners
         initListener();
+        Log.d("YESS", "5");
 
         // Fetch/Update Data
         getData();
+        Log.d("YESS", "7");
     }
 
     @Override
@@ -73,7 +81,8 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
         progressIndicator = view.findViewById(R.id.progress_bar);
         mySwipeRefreshLayout = view.findViewById(R.id.refresh);
 
-        RecyclerView repoRecycler = view.findViewById(R.id.repo_list);
+        repoRecycler = view.findViewById(R.id.repo_list);
+
         // For performance
         repoRecycler.setHasFixedSize(true);
         // Set layout type
@@ -93,16 +102,19 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
     private void initListener() {
         mAdapter.setOnItemClickLister(this);
         mySwipeRefreshLayout.setOnRefreshListener(this::getData);
+        Log.d("YESS", "4");
     }
 
     /**
      * Fetch data
      */
     private void getData() {
+        Log.d("YESS", "6.1");
         EspressoIdlingResource.increment();
         progressIndicator.setVisibility(View.VISIBLE);
         mViewModel.getRepos(RAW_QUERY)
                 .observe(getViewLifecycleOwner(), this::consumeData);
+        Log.d("YESS", "6.11");
     }
 
     /**
@@ -111,12 +123,13 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
      * @param response data
      */
     private void consumeData(@NonNull Response<List<Repo>> response) {
+        Log.d("YESS", "6.21");
         // Update indicators
         progressIndicator.setVisibility(View.GONE);
         mySwipeRefreshLayout.setRefreshing(false);
 
         // Get result
-        List<Repo> data = response.getData();
+        data = response.getData();
 
         // Get error
         Throwable error = response.getError();
@@ -126,8 +139,9 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
         } else {
             // Update data.
             mAdapter.submitList(data);
+            Log.d("YESS", "6.22");
         }
-
+        Log.d("YESS", "6.23");
         EspressoIdlingResource.decrement();
     }
 
@@ -142,4 +156,6 @@ public class GithubListFragment extends BaseFragment<GithubViewModel>
                 // Navigate to next view with predefined action & data.
                 .navigate(R.id.action_githubListFragment_to_githubDetailFragment, args);
     }
+
+
 }

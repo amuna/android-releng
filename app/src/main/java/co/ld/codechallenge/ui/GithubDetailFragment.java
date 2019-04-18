@@ -5,6 +5,7 @@
 package co.ld.codechallenge.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -85,6 +86,7 @@ public class GithubDetailFragment extends BaseFragment {
         username = view.findViewById(R.id.username);
         stars = view.findViewById(R.id.stars);
         dp = view.findViewById(R.id.dp);
+        Log.d("YES", "10");
     }
 
     /**
@@ -106,6 +108,7 @@ public class GithubDetailFragment extends BaseFragment {
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(dp);
 
+        //dp.setTag("Image");
         EspressoIdlingResource.decrement();
     }
 }

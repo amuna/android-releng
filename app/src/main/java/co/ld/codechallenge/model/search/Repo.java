@@ -130,10 +130,13 @@ public class Repo implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        return "Repo{" +
+        return id + " " + fullName + " " + name + " " + description + " " + owner + " " + url + " " + stargazersCount;
+     /*
+     return "Repo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 '}';
+                */
     }
 }

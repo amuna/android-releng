@@ -5,6 +5,7 @@
 package co.ld.codechallenge.common;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.CheckResult;
 import androidx.annotation.LayoutRes;

@@ -4,6 +4,8 @@
 
 package co.ld.codechallenge.repository;
 
+import android.util.Log;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -54,6 +56,7 @@ public class SearchRepository implements Repository<List<Repo>> {
     @NonNull
     @CheckResult
     public Single<List<Repo>> getData(@NonNull String query) {
+        Log.d("YES", "4: " + query);
         this.query = Objects.requireNonNull(query, "Query cannot be null").trim();
         // Create request object
         return RepositoryManager.getInstance()

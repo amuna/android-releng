@@ -4,6 +4,8 @@
 
 package co.ld.codechallenge.network;
 
+import android.util.Log;
+
 import com.google.gson.GsonBuilder;
 
 import androidx.annotation.CheckResult;
@@ -66,6 +68,7 @@ public final class NetworkManager {
                 }
             }
         }
+        Log.d("YES", "3: " + mRetrofit);
         return mRetrofit;
     }
 

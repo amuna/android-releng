@@ -152,4 +152,9 @@ dependencies {
     androidTestImplementation deps.androidTest.espressoIntents
     androidTestImplementation deps.androidTest.espressoIdling
     androidTestImplementation deps.androidTest.uiautomator
+
+    //mockito dependencies
+    androidTestImplementation "org.mockito:mockito-core:1.10.19"
+    androidTestImplementation "com.google.dexmaker:dexmaker:1.2"
+    androidTestImplementation "com.google.dexmaker:dexmaker-mockito:1.2"
 }

@@ -4,6 +4,8 @@
 
 package co.ld.codechallenge.viewmodel;
 
+import android.util.Log;
+
 import org.reactivestreams.Publisher;
 
 import java.util.List;
