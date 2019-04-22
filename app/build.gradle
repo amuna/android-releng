@@ -3,6 +3,8 @@ apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'jacoco'
+
 apply from: "$project.rootDir/gradle/jacoco.gradle"
 
 android {
@@ -65,6 +67,10 @@ android {
     useLibrary 'android.test.runner'
     useLibrary 'android.test.base'
     useLibrary 'android.test.mock'
+}
+
+jacoco {
+    toolVersion = "0.7.4.201502262128"
 }
 
 /*

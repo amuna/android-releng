@@ -35,6 +35,7 @@ public class ComponetTest {
 
     @Before
     public void setUp() throws Exception {
+        Thread.sleep(5000);
         Owner itemOwner = new Owner();
         itemOwner.setId(97088);
         itemOwner.setLogin("mrdoob");
@@ -62,6 +63,7 @@ public class ComponetTest {
 
         //Check if size of list is 1.
         assertEquals(1, GithubListFragment.data.size());
+        //
     }
 
 }
